@@ -1,0 +1,183 @@
+@use "reset";
+
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+$--clr-primary-text-blue: hsl(238, 29%, 16%);
+$--clr-primary-text-red: hsl(14, 88%, 65%);
+
+$--clr-background-violet: rgb(175, 103, 233);
+$--clr-background-blue: rgb(101, 101, 231);
+
+$--clr-neutral-text-very-dark: hsl(237, 12%, 33%);
+$--clr-neutral-text-dark: hsl(240, 6%, 50%);
+
+$--clr-neutral-dividers: hsl(240, 5%, 91%);
+$--fs-body: 12px;
+
+$--ff-main: 'Kumbh Sans', sans-serif;
+$--fw-400: 400;
+$--fw-700: 700;
+
+body {
+    width: 100%;
+    height: 100%;
+    background: rgb(175,103,233);
+    background: linear-gradient(180deg, rgba(175,103,233,1) 46%, rgba(101,101,231,1) 91%);
+    font-family: $--ff-main;
+    display: grid;
+    grid-template-rows: 1fr 30px;
+}
+
+main {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: auto auto;
+    top: 0; bottom: 0;
+
+    display: grid;
+    place-items: center;
+    place-content: center;
+}
+
+section {
+    position: relative;
+    width: 900px;
+    height: 30rem;
+    top: 0; left:0; right: 0; bottom: 0;
+    background: white;
+    border-radius: 30px;
+    
+
+    .float-image {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        top: 200px;
+        left: -100px;
+        z-index: 500;
+        background: url("../images/illustration-box-desktop.svg");
+        background-repeat: no-repeat;
+    }
+
+    .faq-section {
+        height: 100%;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        overflow: hidden;
+
+        .faq-section-left {
+            grid-column: 1 / 2;
+            overflow: hidden;
+
+            .faq-section-left-background {
+                position: absolute;
+                top: -280px;
+                left: -560px;
+            }
+
+            .faq-section-left-foreground {
+                position: absolute;
+                top: 70px;
+                left: -70px;
+            }
+
+        }
+
+        .faq-section-right {
+            grid-column: 2 / 3;
+            margin-top: 2.5rem;
+            margin-right: 4rem;
+            ul {
+                list-style: none;
+
+                li {
+                    position: relative;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+
+  
+                    border: 1px solid $--clr-neutral-dividers;
+                    border-left: 0px;
+                    border-right: 0px;
+                    border-top: 0px;
+                    
+
+                    .faq-content-item-question {
+                        color: $--clr-neutral-text-very-dark;
+                        position: relative;
+                        
+                        &:hover {
+                            color: $--clr-primary-text-red;
+                            
+                        }
+
+                        &:hover ~ .faq-content-item-answer {
+                            // display: block;
+                            // color: red;
+                            // transform: scaleY(1);
+                        }
+
+                        &.open {
+                            p{
+                                color: $--clr-primary-text-blue !important;
+                                font-size: 1em;
+                            }
+
+                            &::after {
+                                transform: rotate(180deg);
+                                transform-origin: center 25%;
+                            }
+
+                        }
+
+
+
+                        &::after {
+                            content: '';
+                            position:absolute;
+                            right: 0;
+                            top: 4px;
+                            width: 10px;
+                            height: 10px;
+                            background: url('../images/icon-arrow-down.svg');
+                            background-repeat: no-repeat;
+                            transition: all 250ms ease-in-out;
+                        }
+                    }
+
+                    .faq-content-item-answer {
+                        transform: scaleY(0);
+                        transform-origin: top;
+                        transition: all 250ms ease-in-out;
+                        margin-bottom: -40px;
+
+                        &.open{
+                            display: block;
+                            color: $--clr-neutral-text-dark;
+                            transform: scaleY(1);
+                            margin-bottom: -10px;
+                        }
+                    }
+
+                    
+                }
+            }
+            h2 {
+                font-size: $--fs-body * 3;
+            }
+
+            p {
+                font-size: $--fs-body;
+            }
+        }
+
+        
+    }
+
+}
+
+
+
+@import "mobile";
